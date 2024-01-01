@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="menu">
+    <ul>
+      <li><a class="headerlogo">Header Logo</a></li>
+      <li><a class="footerlogo">Footer Logo</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="header-container active">
+      <div class="down-container">
+        <div class="para">
+          <div id="displayTextHeader">
+            <p></p>
+          </div>
+        </div>
+        <div class="logo-img">
+          <img src="header.png" />
+        </div>
+      </div>
+      <form id="locationform">
+        <input type="text" id="locationname" name="locationname" placeholder="Write Location Name">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="footer-container">
+      <div class="down-container">
+        <div class="para">
+          <div id="displayTextFooter">
+            <p></p>
+          </div>
+        </div>
+        <div class="logo-img">
+          <img src="footer.png" />
+        </div>
+      </div>
+      <form id="locationformfooter">
+        <input type="text" id="locationnamefooter" name="locationnamefooter" placeholder="Write Location Name">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <button id="downloadbtn"></button>
+
+  <div class="below-device">
+    <img src="header.png" />
+    <p>This is not working on smaller screens (below 1024px).</p>
+  </div>
+
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
