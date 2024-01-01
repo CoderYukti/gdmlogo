@@ -10,6 +10,8 @@
     const headerLogo = document.querySelector('.headerlogo');
     const footerLogo = document.querySelector('.footerlogo');
     const downloadBtn = document.getElementById('downloadbtn');
+    const submitBtnHeader = document.getElementById('submitBtn');
+    const submitBtnFooter = document.getElementById('submitBtnFooter');
 
     // Add submit event listener to the form
     Headerform.addEventListener('submit', function (event) {
@@ -24,7 +26,9 @@
 
       // Clear any previous inline styles
       displayTextHeader.style.removeProperty('letter-spacing');
-      displayTextHeader.style.overflow = 'visible'; // Reset overflow property
+
+      // Disable the submit button
+      submitBtn.disabled = true;
 
       // Calculate the necessary adjustments to fit the content within the fixed width
       const defaultLetterSpacing = 12; // Set your default CSS letter spacing
@@ -34,11 +38,10 @@
       // Check if the text overflows and adjust letter spacing accordingly
       if (contentWidth > containerWidth) {
         const spacingDifference = contentWidth - containerWidth;
-        const dynamicLetterSpacing = defaultLetterSpacing - spacingDifference / (inputValue.length - 1);
+        const dynamicLetterSpacing = defaultLetterSpacing - spacingDifference / inputValue.length;
 
         // Limit the negative letter-spacing to a maximum of -2
         displayTextHeader.style.letterSpacing = `${Math.max(-2, dynamicLetterSpacing)}px`;
-        displayTextHeader.style.overflow = 'hidden'; // Set overflow to hidden
       } else {
         // Reset to default letter-spacing if it doesn't overflow
         displayTextHeader.style.letterSpacing = `${defaultLetterSpacing}px`;
@@ -81,7 +84,9 @@
 
       // Clear any previous inline styles
       displayTextFooter.style.removeProperty('letter-spacing');
-      displayTextFooter.style.overflow = 'visible'; // Reset overflow property
+
+      // Disable the submit button
+      submitBtnFooter.disabled = true;
 
       // Calculate the necessary adjustments to fit the content within the fixed width
       const defaultLetterSpacing = 12; // Set your default CSS letter spacing
@@ -95,7 +100,6 @@
 
         // Limit the negative letter-spacing to a maximum of -2
         displayTextFooter.style.letterSpacing = `${Math.max(-2, dynamicLetterSpacing)}px`;
-        displayTextFooter.style.overflow = 'hidden'; // Set overflow to hidden
       } else {
         // Reset to default letter-spacing if it doesn't overflow
         displayTextFooter.style.letterSpacing = `${defaultLetterSpacing}px`;
@@ -139,7 +143,8 @@
     // Get the download button
 
     // Add click event listener to the download button
-    downloadBtn.addEventListener('click', function () {
+    downloadBtn.addEventListener('click', function (event) {
+
       // Get the active container
       const activeContainer = document.querySelector('.active .down-container');
 
@@ -155,7 +160,8 @@
       canvas.height = activeContainer.offsetHeight;
 
       // Draw the content of the active container onto the canvas
-      html2canvas(activeContainer, { backgroundColor: null }).then(function (canvas) {
+      html2canvas(activeContainer, { backgroundColor: null, logging: true, width: activeContainer.offsetWidth, height: activeContainer.offsetHeight }).then(function (canvas) {
+        console.log(canvas); // Log the canvas object to inspect its content and properties
         // Convert the canvas content to a data URL
         const dataUrl = canvas.toDataURL('image/png');
 
@@ -175,5 +181,8 @@
         if (downloadLink.parentNode) {
           document.body.removeChild(downloadLink);
         }
+        // Refresh the page
+        location.reload();
       });
     });
+    
